@@ -4,6 +4,8 @@ using textRpg;
 
 public class Game
 {
+    
+
     private Stats stats;
     private Inventory inventory;
     public Game()
@@ -14,6 +16,15 @@ public class Game
 
             // 환영인사 및 다음 행동 안내
             Console.WriteLine("엘븐항구에 오신것을 환영합니다.");
+            Console.Write("사용하실 모험가 이름을 입력해주세요 : ");
+            string nickname = Console.ReadLine();
+
+           
+
+            Console.WriteLine($"환영합니다! {nickname}님!");
+
+            stats.userName = nickname;
+
             Console.WriteLine("원하시는 종족을 입력해주세요");
             Console.WriteLine("1.휴먼 2.엘프 3.마족");
 
@@ -40,7 +51,7 @@ public class Game
                     return;
             }
 
-            //플레이어 직업 설정
+           
 
 
             while (true)
@@ -57,9 +68,14 @@ public class Game
                 // 행동 실행
                 int num2 = int.Parse(Console.ReadLine());
 
+                 const int Show_STATUS = 1;
+                 const int Show_INVENTOTY = 2;
+                 const int OPEN_SHOP = 3;
+
                 switch (num2)
                 {
-                    case 1: //상태보기
+
+                    case Show_STATUS : 
                         Console.WriteLine("상태창을 오픈합니다");
                         //스텟창 열기 
                         stats.ShowStats();
@@ -77,7 +93,7 @@ public class Game
 
                         break;
 
-                    case 2://인벤토리
+                    case Show_INVENTOTY:
                         Console.WriteLine("인벤토리를 오픈합니다");
                         //인벤토리창 열기
                         inventory.UserInventory();
@@ -99,7 +115,7 @@ public class Game
                             Console.WriteLine("메인 메뉴로 돌아갑니다.");
                             break;
                         }
-                    case 3:
+                    case OPEN_SHOP :
                         Console.WriteLine("상점을 오픈합니다");
                         break;
 

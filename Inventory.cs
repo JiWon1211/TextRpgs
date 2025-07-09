@@ -11,6 +11,7 @@ namespace textRpg
     public class Inventory
     {
         string[] items = { "천 갑옷", "롱소드","증폭의 고서" };
+        
 
         bool[] isEquipped = { false, false, false };
         public void UserInventory()

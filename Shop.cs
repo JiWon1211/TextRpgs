@@ -15,6 +15,10 @@ namespace textRpg
         private int[] prices = { 1200, 500, 700, 99999 , 200 };
         private bool[] isPurchased = { false, false, false, false, false };
 
+        private int[] atkBonus = { 15, 3, 0, 0, 0 };   // 공격력 보너스
+        private int[] defBonus = { 0, 0, 5, 0, 0 };    // 방어력 보너스
+        private int[] hpBonus = { 0, 0, 0, 99999, 20 };  // 체력 보너스
+
         public Shop(Stats s)
         {
             stats = s; 
@@ -36,7 +40,14 @@ namespace textRpg
                 for (int i = 0; i < items.Length; i++)
                 {
                     string status = isPurchased[i] ? " [구매 완료]" : $" - {prices[i]}G";
-                    Console.WriteLine($"{i + 1}. {items[i]}{status}");
+
+                    string statInfo = " ";
+                    if (atkBonus[i] > 0) statInfo += $"공격력 +{atkBonus[i]} ";
+                    if (defBonus[i] > 0) statInfo += $"방어력 +{defBonus[i]} ";
+                    if (hpBonus[i] > 0) statInfo += $"체력 +{hpBonus[i]}";
+
+                    // 아이템명 + 가격[구매완료] + 능력치 
+                    Console.WriteLine($"{i + 1}. {items[i]}{status} ({statInfo.Trim()})");
                 }
                 Console.WriteLine("\n\n0. 나가기");
 

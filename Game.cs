@@ -12,7 +12,22 @@ enum Info
 }
 public class Game
 {
- 
+
+    public static void ShowLoading(string message = "로딩 중")
+    {
+        Console.Write($"\n{message}");
+
+        for (int i = 0; i < 3; i++)
+        {
+            Thread.Sleep(500); // 0.5초 딜레이
+            Console.Write(".");
+        }
+
+        Thread.Sleep(500); // 마지막 딜레이 약간 더
+        Console.WriteLine(); 
+    }
+
+
     private Stats stats;
     private Inventory inventory;
     private Shop shop;
@@ -31,8 +46,8 @@ public class Game
             Console.WriteLine("스파르타 마을에 오신것을 환영합니다.");
             Console.Write("사용하실 모험가 이름을 입력해주세요 : ");
             string nickname = Console.ReadLine();
-
-           
+            
+            ShowLoading("로딩 중");
 
             Console.WriteLine($"\n환영합니다! {nickname}님!");
 
@@ -86,7 +101,8 @@ public class Game
                 switch (num2)
                 {
                     
-                    case (int)Info.Show_STATUS : 
+                    case (int)Info.Show_STATUS :
+                        ShowLoading("이동 중");
                         Console.WriteLine("상태창을 오픈합니다");
                         //스텟창 열기 
                         stats.ShowStats();
@@ -105,6 +121,7 @@ public class Game
                         break;
 
                     case (int)Info.Show_INVENTOTY:
+                        ShowLoading("이동 중");
                         Console.WriteLine("인벤토리를 오픈합니다");
                         //인벤토리창 열기
                         inventory.UserInventory();
@@ -122,6 +139,7 @@ public class Game
                         break;
 
                     case (int)Info.OPEN_SHOP :
+                        ShowLoading("이동 중");
                         Console.WriteLine("상점을 오픈합니다");
 
                         shop.Store();
@@ -144,5 +162,9 @@ public class Game
                 }
             }
         }
+
+
+
+
     }
 }

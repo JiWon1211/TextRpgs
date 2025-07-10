@@ -53,7 +53,7 @@ namespace textRpg
 
                 if (input == "4")
                     break;
-
+                
                 if (int.TryParse(input, out int index) &&
                     index >= 1 && index <= items.Length) 
                 {

@@ -1,31 +1,44 @@
 ﻿using System;
+using System.Security.Cryptography.X509Certificates;
 using textRpg;
 
-
+enum Info
+{
+    EXIT_GAME = 0,
+    Show_STATUS,
+    Show_INVENTOTY,
+    OPEN_SHOP
+    
+}
 public class Game
 {
-    
-
+ 
     private Stats stats;
     private Inventory inventory;
+    private Shop shop;
+    
+
     public Game()
 	{
         stats = new Stats();
         inventory = new Inventory();
+        shop = new Shop(stats);
+
         {
+            
 
             // 환영인사 및 다음 행동 안내
-            Console.WriteLine("엘븐항구에 오신것을 환영합니다.");
+            Console.WriteLine("스파르타 마을에 오신것을 환영합니다.");
             Console.Write("사용하실 모험가 이름을 입력해주세요 : ");
             string nickname = Console.ReadLine();
 
            
 
-            Console.WriteLine($"환영합니다! {nickname}님!");
+            Console.WriteLine($"\n환영합니다! {nickname}님!");
 
             stats.userName = nickname;
 
-            Console.WriteLine("원하시는 종족을 입력해주세요");
+            Console.WriteLine("\n전직할 직업을 입력해주세요");
             Console.WriteLine("1.휴먼 2.엘프 3.마족");
 
             // 직업목록 
@@ -68,14 +81,12 @@ public class Game
                 // 행동 실행
                 int num2 = int.Parse(Console.ReadLine());
 
-                 const int Show_STATUS = 1;
-                 const int Show_INVENTOTY = 2;
-                 const int OPEN_SHOP = 3;
 
+                
                 switch (num2)
                 {
-
-                    case Show_STATUS : 
+                    
+                    case (int)Info.Show_STATUS : 
                         Console.WriteLine("상태창을 오픈합니다");
                         //스텟창 열기 
                         stats.ShowStats();
@@ -93,7 +104,7 @@ public class Game
 
                         break;
 
-                    case Show_INVENTOTY:
+                    case (int)Info.Show_INVENTOTY:
                         Console.WriteLine("인벤토리를 오픈합니다");
                         //인벤토리창 열기
                         inventory.UserInventory();
@@ -110,13 +121,10 @@ public class Game
 
                         break;
 
-                        if (input == "4")
-                        {
-                            Console.WriteLine("메인 메뉴로 돌아갑니다.");
-                            break;
-                        }
-                    case OPEN_SHOP :
+                    case (int)Info.OPEN_SHOP :
                         Console.WriteLine("상점을 오픈합니다");
+
+                        shop.Store();
                         break;
 
                         if (input == "4")
@@ -125,7 +133,7 @@ public class Game
                             break;
                         }
 
-                    case 0:
+                    case (int)Info.EXIT_GAME :
                         Console.WriteLine("게임을 종료합니다.");
                         Environment.Exit(0);
                         return;

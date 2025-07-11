@@ -19,6 +19,15 @@ namespace textRpg
         private int[] defBonus = { 0, 0, 5, 0, 0 };    // 방어력 보너스
         private int[] hpBonus = { 0, 0, 0, 99999, 20 };  // 체력 보너스
 
+        private string[] descriptions =
+        {
+        "무쇠로 만들어져 튼튼한 갑옷입니다.",
+        "스파르타의 전사들이 사용했다는 전설의 창입니다.",
+        "전설의 신발. 빠르게 움직일 수 있습니다.",
+        "아무에게도 먹이지 마십시오.",
+        "할머니가 만든 따뜻한 스튜입니다."
+        };
+
         public Shop(Stats s)
         {
             stats = s; 
@@ -48,6 +57,7 @@ namespace textRpg
 
                     // 아이템명 + 가격[구매완료] + 능력치 
                     Console.WriteLine($"{i + 1}. {items[i]}{status} ({statInfo.Trim()})");
+                    Console.WriteLine($"   → {descriptions[i]}\n");
                 }
                 Console.WriteLine("\n\n0. 나가기");
 

@@ -19,7 +19,7 @@ public class Game
 
         for (int i = 0; i < 3; i++)
         {
-            Thread.Sleep(500); // 0.5초 딜레이
+            Thread.Sleep(300); // 0.5초 딜레이
             Console.Write(".");
         }
 
@@ -54,10 +54,10 @@ public class Game
             stats.userName = nickname;
 
             Console.WriteLine("\n전직할 직업을 입력해주세요");
-            Console.WriteLine("1.휴먼 2.엘프 3.마족");
+            Console.WriteLine("1.전사 2.궁수 3.마법사");
 
             // 직업목록 
-            string[] job = { "휴먼", "엘프", "마족" };
+            string[] job = { "전사", "궁수", "마법사" };
             int num1 = int.Parse(Console.ReadLine());
 
             switch (num1)
